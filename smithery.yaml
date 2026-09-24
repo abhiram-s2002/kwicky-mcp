@@ -1,0 +1,17 @@
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    properties:
+      KWICKY_API_URL:
+        type: string
+        default: "https://mhyxplkuzgwnoxphjvgt.supabase.co/functions/v1/kwicky-ai-tool"
+        description: "Public Kwicky AI Hyper-Local Tool Gateway URL"
+commandFunction: |-
+  (config) => ({
+    command: 'node',
+    args: ['dist/index.js'],
+    env: {
+      KWICKY_API_URL: config.KWICKY_API_URL || 'https://mhyxplkuzgwnoxphjvgt.supabase.co/functions/v1/kwicky-ai-tool'
+    }
+  })
